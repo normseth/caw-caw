@@ -1,4 +1,7 @@
 caw-caw
 =======
 
-test-003
+This is a sample hibernate, myswl, jax-rs project with a small html,js page
+This will be used to test a chef deployment to two different servers, a 
+data server and a web server. This project will be pulled from its repo and deployed
+automatically using chef to provision the servers with know db users.

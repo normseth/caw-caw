@@ -1,0 +1,39 @@
+    <!doctype html>
+    <html>
+    <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	
+	<script type="text/javascript">
+	
+	window.onload = function () {
+
+		setTimeout(loadData("http://localhost:8080/SimpleApp-1.0-SNAPSHOT/rest/stock/"), 100);
+		
+	};
+
+	function loadData(url){  
+		$.ajax({
+			type: "GET",
+			url: "http://localhost:8080/SimpleApp-1.0-SNAPSHOT/rest/stock/",
+			dataType: "json",
+			success: function(json) {
+			   for (var i in json) {
+				$('#stocklist').append('<tr><td>' + json[i].stockCode + '</td><td>' + json[i].stockName + '</td></tr>');       
+			   }			   
+			}
+		});
+	};
+	
+
+	
+	</script>
+
+    </script>
+    <link rel="stylesheet" href="test.css">
+    </head>
+    <body>
+    <div class='darkAndWide'><h2>Test Page</h2><img class='rightFloat' src="smiley.gif" alt="Smiley face" ></div>
+    <p/>
+	<table id="stocklist"></table>
+    </body>
+    </html>
