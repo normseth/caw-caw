@@ -8,6 +8,9 @@
   <name>SimpleApp</name>
   <url>http://maven.apache.org</url>
   
+  <build>
+        <finalName>${artifactId}</finalName>
+  </build>
   
   <repositories>
     <repository>
