@@ -10,12 +10,14 @@ import net.sf.json.JSONSerializer;
 
 
 
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.springframework.context.ApplicationContext;
@@ -47,7 +49,7 @@ public class StockController {
 	}
 		
 	@GET
-	@Path("/")
+	@Path("/list")
 	public Response getStocks() { 
 		StockBo stockBo = (StockBo) appContext.getBean("stockBo");
 		List<Stock> stocks = stockBo.findAllStocks();
@@ -55,10 +57,11 @@ public class StockController {
 		return Response.status(200).entity(obj.toString(4)).build(); 
 	}
 	
-	@PUT
-	@Path("/code/{code}/name/{name}")
-	public Response putStock(@PathParam("code") String code, 
-			@PathParam("name") String name) { 
+	@POST
+	@Path("/put")
+	public Response putStock(@QueryParam("code") String code, 
+			@QueryParam("name") String name) { 
+		
 		Stock stock = new Stock();
 		stock.setStockCode(code);
 		stock.setStockName(name);
@@ -69,9 +72,9 @@ public class StockController {
 	}
 	
 	@POST
-	@Path("/code/{code}/name/{name}")
-	public Response postStock(@PathParam("code") String code, 
-			@PathParam("name") String name) { 
+	@Path("/post")
+	public Response postStock(@QueryParam("code") String code, 
+			@QueryParam("name") String name) { 
 		StockBo stockBo = (StockBo) appContext.getBean("stockBo");
 		Stock stock = stockBo.findByStockCode(code);
 		stock.setStockName(name);
@@ -81,8 +84,8 @@ public class StockController {
 	}
 	
 	@DELETE
-	@Path("/code/{param}")
-	public Response deleteStock(@PathParam("param") String code) { 
+	@Path("/delete")
+	public Response deleteStock(@QueryParam("code") String code) { 
 		StockBo stockBo = (StockBo) appContext.getBean("stockBo");
 		Stock stock = stockBo.findByStockCode(code);
 		stockBo.delete(stock);

@@ -15,5 +15,5 @@ INSERT INTO `stocks`.`stock` (STOCK_CODE, STOCK_NAME) VALUES ('ABBA', 'American 
 INSERT INTO `stocks`.`stock` (STOCK_CODE, STOCK_NAME) VALUES ('SLAP', 'Small Light Aircraft Project.');
 
 -- This is our webapp user. Needs to be in hibernate/mysql configuration
-GRANT ALL ON `stocks`.* TO 'monty'@'localhost' IDENTIFIED BY 'xxxx';
-GRANT ALL ON `stocks`.* TO 'monty'@'%' IDENTIFIED BY 'xxxxx';
+GRANT ALL ON `stocks`.* TO 'monty'@'localhost' IDENTIFIED BY 'standalone';
+GRANT ALL ON `stocks`.* TO 'monty'@'%' IDENTIFIED BY 'standalone';
