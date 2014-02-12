@@ -5,21 +5,13 @@
     http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>Restful Web Application</display-name>
  
-    <servlet>
-        <servlet-name>jersey-serlvet</servlet-name>
-        <servlet-class>
-                     com.sun.jersey.spi.container.servlet.ServletContainer
-                </servlet-class>
-        <init-param>
-             <param-name>com.sun.jersey.config.property.packages</param-name>
-             <param-value>com.simple.stock.rest</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
- 
-    <servlet-mapping>
-        <servlet-name>jersey-serlvet</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>
- 
+	<servlet>
+	  <servlet-name>stock</servlet-name>
+	  <servlet-class>com.simple.stock.rest.StockController</servlet-class>
+	</servlet>
+	 <servlet-mapping>
+	  <servlet-name>stock</servlet-name>
+	  <url-pattern>/stock/*</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

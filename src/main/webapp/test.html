@@ -1,50 +1,74 @@
     <!doctype html>
     <html>
     <head>
+    <style>
+	#stocklist
+	{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	width:40%;
+	border-collapse:collapse;
+	}
+	</style>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	
 	<script type="text/javascript">
 	
+	function tweetData() {
+	      var url = 'http://localhost:8080/SimpleApp/stock';
+	      $.post( url, { name: $('#name').val(), code: $('#code').val() })
+	    	  .done(function( data ) {
+	    		  location.reload();
+	      });	      
+	      return false;
+    };
+    
+    function deleteRow(code) {
+	      var url = 'http://localhost:8080/SimpleApp/stock';
+	      $.post( url, { code: code.id })
+    	  .done(function( data ) {
+    		  location.reload();
+      	  });
+	      return false;
+  	};
+    
+	</script>
+	
+	<script type="text/javascript">
 	window.onload = function () {
-
-		setTimeout(loadData("http://localhost:8080/SimpleApp/rest/stock/list"), 100);
-		
+		setTimeout(loadData("http://localhost:8080/SimpleApp/stock"), 100);
 	};
 
-	function loadData(url){  
-		$.ajax({
+	function loadData(url)
+	{  
+		$.ajax(
+		{
 			type: "GET",
-			url: "http://localhost:8080/SimpleApp/rest/stock/list/",
+			url: url,
 			dataType: "json",
 			success: function(json) {
 			   for (var i in json) {
 				$('#stocklist').append('<tr><td>' + json[i].stockCode + '</td>' + 
 	                   '<td>' + json[i].stockName + '</td>' +
-	                   '<td><a href=""><img src="redx.jpg" alt="remove" height="20" width="20"/></a></td></tr>');       
+	                   '<td><a href=""><img onclick="deleteRow(' + json[i].stockCode + ')" src="redx.jpg" id="' + 
+	                   			json[i].stockCode + '" alt="remove" height="18" width="18"/></a></td></tr>');       
 			   }			   
 			}
 		});
 	};
-	
-
-	
 	</script>
 
-    </script>
     <link rel="stylesheet" href="test.css">
     </head>
     <body>
-    <div class='darkAndWide'><h2>Test Page</h2><img class='rightFloat' src="smiley.gif" alt="Smiley face" ></div>
+    <div class='darkAndWide'><h2>Simple Web App</h2><img class='rightFloat' src="smiley.gif" alt="..." ></div>
     <p/>
     <p/>
-    <form action='http://localhost:8080/SimpleApp/rest/stock/put/' method='POST'>
-    Enter New code and full name:
+
+    Enter code and description:
     <br/>
-    <input type="text" name="code" size="10"></input>
-    <input type="text" name="name" size="60"></input>
-    <input type="submit" value="Submit"></input>
-    <input type="reset" value="Clear"></input>
-	</form>
+    <input type="text" id="code" size="10"></input>
+    <input type="text" id="name" size="60"></input>
+    <input type="button" value="Submit" onclick="tweetData();"></input>
+
 	<p/>
 	<p/>
 	<table id="stocklist"></table>
