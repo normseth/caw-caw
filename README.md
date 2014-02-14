@@ -7,12 +7,3 @@ data server and a web server. This project will be pulled from its repo and depl
 automatically using chef to provision the servers with know db users.
 
 # Making a trivial change to push to origin.
-# Making a second trivial change to push to origin.
-# Making a third trivial change to push to origin.
-# Making a fourth trivial change to push to origin.
-# Making a fifth trivial change to push to origin.
-# Making a sixth trivial change to push to origin.
-# Making a seventh trivial change to push to origin.
-# Making a eighth trivial change to push to origin.
-# Making a ninth trivial change to push to origin.
-# Making a tenth trivial change to push to origin.
