@@ -34,41 +34,48 @@ How do I know the name of the mysql server in order to put it into web configura
 ======================
 Web Application Facts:
 ======================
-The application part of the project is bundled as a war file. It has the following
-rest endpoints that can be used for testing:
+The application part of the project is bundled as a war file.
+I ripped this code of from a simple DB application that I found
+online for persisting stock quotes. It uses hibernate so it should
+hook up to other DBs easily.
 
-1) GET /rest/stock/i-say/{msg}
-	returns the string "I say: <msg>" where <msg>  was passed in on the URL. 
-	this is a simple DBless check of the web service layer.
+It has the following rest endpoints that can be used for testing:
+
+1) GET http://localhost:8080/SimpleApp/stock?name=<name>
+    returns a JSON for one item.
 	
-2) GET /rest/stock/
+2) GET http://localhost:8080/SimpleApp/stock
     returns a full list of stock objects
 	
-3) GET /rest/stock/{code}
-    returns a specific stock object given a code (which is an index)
-
-4) POST /rest/stock/{id}
-   CONTENT-TYPE JSON
-   { name: "name", code: "code" }
-   updates an object based on known DB id.
+3) POST http://localhost:8080/SimpleApp/stock
+   parameters: { name: "name", code: "code" }
+   updates or creates an item based on DB name.
    
-5) PUT /rest/stock/
-   CONTENT-TYPE JSON
-   { name: "name", code: "code" }
-   creates an object.
+4) POST http://localhost:8080/SimpleApp/stock
+   parameters: { name: "name" }
+   deletes an item based on DB name.
+   
+The UI for the super simple app is here:   
+http://localhost:8080/SimpleApp/test.html
 
-6) DELETE /rest/stock/{id}
-   deletes an object based on known DB id.   
+This HTML page has 2 text boxes and a submit button. When simething is entered, and
+submitted and ajax call is made to the web service. The web service will persist the
+changes into the DB. The page then reloads and gets the fresh list of items from
+the server.
 
-Sample URLs to localhost:
+To adjust the DB parameters, one can edit the parameters after deployment into tomcat, or
+unpack & repack the war. In windows with WinZip, one can edit the file without unpacking it.
 
-http://localhost:8080/SimpleApp-1.0-SNAPSHOT/test.html
-http://localhost:8080/SimpleApp-1.0-SNAPSHOT/rest/stock/
-http://localhost:8080/SimpleApp-1.0-SNAPSHOT/rest/stock/code/ABBA   
+The database.properties file contains the connection parameters and this can be found at:
+SimpleApp/WEB-INF/classes/properties/database.properties
    
 ===============   
 Database Facts:
 ===============
+
+See the init-database file - this contains the script that will create the DB, the
+tables and insert a few rows. It also has some lines to grant rights to read data
+from a remote connection.
 
 
 
