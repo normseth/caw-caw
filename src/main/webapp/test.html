@@ -14,9 +14,17 @@
 	
 	function tweetData() {
 	      var url = 'http://localhost:8080/SimpleApp/stock';
+	      if ($('#name').val() == '') {
+	    	  alert("Must provide non-blank description value");
+	    	  return;
+	      }
+	      if ($('#code').val() == '') {
+	    	  alert("Must provide non-blank code value");
+	    	  return;
+	      }
 	      $.post( url, { name: $('#name').val(), code: $('#code').val() })
 	    	  .done(function( data ) {
-	    		  location.reload();
+	    		  setTimeout(location.reload(true), 100);
 	      });	      
 	      return false;
     };
@@ -25,7 +33,7 @@
 	      var url = 'http://localhost:8080/SimpleApp/stock';
 	      $.post( url, { code: code.id })
     	  .done(function( data ) {
-    		  location.reload();
+    		  setTimeout(location.reload(true), 100);
       	  });
 	      return false;
   	};
@@ -65,7 +73,7 @@
 
     Enter code and description:
     <br/>
-    <input type="text" id="code" size="10"></input>
+    <input type="text" id="code" size="10" maxlength='5'></input>
     <input type="text" id="name" size="60"></input>
     <input type="button" value="Submit" onclick="tweetData();"></input>
 
