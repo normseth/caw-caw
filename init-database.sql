@@ -11,6 +11,7 @@ CREATE TABLE  `stocks`.`stock` (
   UNIQUE KEY `UNI_STOCK_ID` (`STOCK_CODE`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
+-- This isnt about stocks at all, just a place to keep data.
 INSERT INTO `stocks`.`stock` (STOCK_CODE, STOCK_NAME) VALUES ('ABBA', 'American Bubble Buster Asscn.');
 INSERT INTO `stocks`.`stock` (STOCK_CODE, STOCK_NAME) VALUES ('SLAP', 'Small Light Aircraft Project.');
 
