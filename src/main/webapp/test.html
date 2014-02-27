@@ -13,7 +13,7 @@
 	<script type="text/javascript">
 	
 	function tweetData() {
-	      var url = 'http://localhost:8080/SimpleApp/stock';
+	      var url = '/SimpleApp/stock';
 	      if ($('#name').val() == '') {
 	    	  alert("Must provide non-blank description value");
 	    	  return;
@@ -30,7 +30,7 @@
     };
     
     function deleteRow(code) {
-	      var url = 'http://localhost:8080/SimpleApp/stock';
+	      var url = '/SimpleApp/stock';
 	      $.post( url, { code: code.id })
     	  .done(function( data ) {
     		  setTimeout(location.reload(true), 100);  
@@ -42,7 +42,7 @@
 	
 	<script type="text/javascript">
 	window.onload = function () {
-		setTimeout(loadData("http://localhost:8080/SimpleApp/stock"), 100);
+		setTimeout(loadData("/SimpleApp/stock"), 100);
 	};
 
 	function loadData(url)
